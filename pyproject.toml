@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "leet_code_tasks"
+version = "0.1.0"
+description = "my_solutions_leet_code_tasks"
+authors = ["Kolodkin.SS"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+numpy = "^2.2.3"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.03.2000"
+isort = "^5.12.0"
+pre-commit = "^3.4.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line_length = 100
+
+[tool.isort]
+profile = "black"
+line_length = 100
