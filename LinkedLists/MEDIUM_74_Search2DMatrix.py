@@ -13,14 +13,15 @@ from typing import List
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         # search row
-        min_row_index = 0 - 1
-        max_row_index = len(matrix) + 1
+        min_row_index = 0
+        max_row_index = len(matrix)
 
         current_row_index = (min_row_index + max_row_index) // 2
 
         while True:
             if matrix[current_row_index][0] <= target <= matrix[current_row_index][-1]:
                 row_index = current_row_index
+                break
             else:
                 if target < matrix[current_row_index][0]:
                     max_row_index = current_row_index
@@ -33,8 +34,8 @@ class Solution:
                 if prev_current_row_index == current_row_index:
                     return False
 
-        min_col_index = 0 - 1
-        max_col_index = len(matrix[row_index]) + 1
+        min_col_index = 0
+        max_col_index = len(matrix[row_index])
 
         current_col_index = (min_col_index + max_col_index) // 2
 
@@ -60,7 +61,13 @@ if __name__ == "__main__":
         is True
     )
 
-    # assert Solution().searchMatrix(
-    #     matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]],
-    #     target = 13
-    # ) == False
+    assert (
+        Solution().searchMatrix(
+            matrix=[[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], target=13
+        )
+        is False
+    )
+
+    assert Solution().searchMatrix(matrix=[[1]], target=0) is False
+
+    assert Solution().searchMatrix(matrix=[[1], [3]], target=3) is True
