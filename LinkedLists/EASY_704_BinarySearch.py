@@ -4,23 +4,21 @@ from typing import List
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         left = 0
-        right = len(nums)
+        right = len(nums) - 1
         current = (left + right) // 2
 
-        while True:
+        while left <= right:
             if nums[current] == target:
                 return current
 
             if nums[current] > target:
-                right = current
+                right = current - 1
             else:
-                left = current
+                left = current + 1
 
-            prev_current = current
             current = (left + right) // 2
 
-            if current == prev_current:
-                return -1
+        return -1
 
 
 if __name__ == "__main__":

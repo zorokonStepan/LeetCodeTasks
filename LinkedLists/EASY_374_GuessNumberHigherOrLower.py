@@ -29,7 +29,7 @@ def guess(num: int) -> int:
 class Solution:
     def guessNumber(self, n: int) -> int:
         _min = 0
-        _max = n + 1
+        _max = n
         num = (_min + _max) // 2
 
         while True:
@@ -38,8 +38,8 @@ class Solution:
             if res == 0:
                 return num
             elif res == -1:
-                _max = num
+                _max = num - 1
             else:
-                _min = num
+                _min = num + 1
 
             num = (_min + _max) // 2
