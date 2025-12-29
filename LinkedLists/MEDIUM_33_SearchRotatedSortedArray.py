@@ -41,25 +41,23 @@ class Solution:
             use_shift = False
 
         left = 0
-        right = len(target_nums)
+        right = len(target_nums) - 1
         current = (left + right) // 2
 
-        while True:
+        while left <= right:
             if target == target_nums[current]:
                 if use_shift:
                     return current + min_value_index
                 return current
 
             if target > target_nums[current]:
-                left = current
+                left = current + 1
             else:
-                right = current
+                right = current - 1
 
-            prev = current
             current = (left + right) // 2
 
-            if prev == current:
-                return -1
+        return -1
 
 
 if __name__ == "__main__":
