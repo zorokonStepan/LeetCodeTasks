@@ -40,18 +40,18 @@ class Solution:
         p = root.left
         q = root.right
 
-        hight_p = self.hight_tree(p)
-        hight_q = self.hight_tree(q)
+        height_p = self.height_tree(p)
+        height_q = self.height_tree(q)
 
-        if abs(hight_p - hight_q) > 1:
+        if abs(height_p - height_q) > 1:
             return False
         return True
 
-    def hight_tree(self, root: Optional[TreeNode]) -> int:
-        hight = 0
+    def height_tree(self, root: Optional[TreeNode]) -> int:
+        height = 0
         row = [root]
         while row:
-            hight += 1
+            height += 1
             tmp = []
 
             for node in row:
@@ -61,4 +61,4 @@ class Solution:
 
             row = tmp
 
-        return hight
+        return height
