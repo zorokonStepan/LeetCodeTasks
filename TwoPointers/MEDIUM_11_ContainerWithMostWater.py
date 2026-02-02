@@ -16,14 +16,15 @@ class Solution:
     def maxArea(self, height: list[int]) -> int:
         max_amount = 0
         for step in range(1, len(height)):
-            min_height = 0
-            for ind in range(0, len(height), step):
-                if height[ind] < min_height:
-                    min_height = height[ind]
+            max_step_amount = 0
+            for ind in range(len(height) - step):
+                min_height = min(height[ind], height[ind + step])
+                amount = min_height * step
+                if amount > max_step_amount:
+                    max_step_amount = amount
 
-            tmp = min_height * step
-            if tmp > max_amount:
-                max_amount = tmp
+            if max_step_amount > max_amount:
+                max_amount = max_step_amount
 
         return max_amount
 
