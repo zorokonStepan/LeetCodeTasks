@@ -11,6 +11,8 @@
     Notice that you may not slant the container.
 """
 
+# NOT MY SOLUTION
+
 
 class Solution:
     def maxArea(self, height: list[int]) -> int:
