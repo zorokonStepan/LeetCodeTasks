@@ -18,9 +18,19 @@ from typing import Optional
 
 
 class Solution:
+    not_even_ind = None
+    even_ind_1 = None
+    even_ind_2 = None
+
     def medianSlidingWindow(self, nums: list[int], k: int) -> list[float]:
         result = []
-        calculate_median = self._even_median if k % 2 == 0 else self._not_even_median
+        if k % 2 == 0:
+            self.even_ind_1 = k // 2 - 1
+            self.even_ind_2 = k // 2
+            calculate_median = self._even_median
+        else:
+            self.not_even_ind = k // 2
+            calculate_median = self._not_even_median
 
         window = sorted(nums[:k])
         result.append(calculate_median(window))
@@ -34,10 +44,10 @@ class Solution:
         return result
 
     def _even_median(self, window: list[int]) -> float:
-        return ((window[len(window) // 2 - 1]) + (window[len(window) // 2])) / 2
+        return ((window[self.even_ind_1]) + (window[self.even_ind_2])) / 2
 
     def _not_even_median(self, window: list[int]) -> float:
-        return float(window[len(window) // 2])
+        return float(window[self.not_even_ind])
 
     def _create_window(self, window: list[int], delete_item: int, insert_item: int) -> list[int]:
         window = self._delete_item(window, delete_item)
