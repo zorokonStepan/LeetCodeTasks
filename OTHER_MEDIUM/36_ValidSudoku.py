@@ -45,9 +45,7 @@ class Solution:
                     return False
         return True
 
-    def _exclude_sub_boxe(
-        self, board: list[list[str]], ind_row: int, column_row: int
-    ) -> list[list[str]]:
+    def _exclude_sub_boxe(self, board: list[list[str]], ind_row: int, column_row: int) -> list[str]:
         return [
             board[ind_row][column_row],
             board[ind_row][column_row + 1],
