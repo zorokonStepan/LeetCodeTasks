@@ -5,42 +5,26 @@ from utils.utils import timer
 
 
 class Solution:
-    def __init__(self):
-        self.prime_numbers = []
-
     @timer
     def countPrimes(self, n: int) -> int:
-        count_primes = 0
-        for num in range(n):
-            if self.is_prime(num):
-                count_primes += 1
-        return count_primes
+        if n < 2:
+            return 0
+        is_prime = [True] * n
+        is_prime[0] = False
+        is_prime[1] = False
 
-    def is_prime(self, num: int) -> bool:
-        if num < 2:
-            return False
-        if num == 2:
-            return True
-        if num % 2 == 0:
-            return False
+        p = 2
+        while p * p < n:
+            if is_prime[p]:
+                for multiple in range(p * p, n, p):
+                    is_prime[multiple] = False
+            p += 1
 
-        if self.prime_numbers:
-            divisors = self.prime_numbers + list(
-                range(self.prime_numbers[-1], int(num**0.5) + 1, 2)
-            )
-        else:
-            divisors = range(int(num**0.5) + 1, 2)
-
-        for divisor in divisors:
-            if num % divisor == 0:
-                return False
-
-        self.prime_numbers.append(num)
-        return True
+        return sum(is_prime)
 
 
 if __name__ == "__main__":
     assert Solution().countPrimes(4) == 2
     assert Solution().countPrimes(10) == 4
-    assert Solution().countPrimes(499979) == 41537  # 63.48615789413452
-    assert Solution().countPrimes(5_000_000) == 348_513  #
+    assert Solution().countPrimes(499979) == 41537  # 0.032638
+    assert Solution().countPrimes(5_000_000) == 348_513  # 0.364623
