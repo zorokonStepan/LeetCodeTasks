@@ -38,19 +38,18 @@ class Solution:
 
             while prior.next and prior.next.val > node.val:
                 prior = prior.next
+
             node.next = prior.next
             prior.next = node
-
             node = next_node
 
         node = sentinel.next
         head = None
+
         while node:
             next_node = node.next
-
             node.next = head
             head = node
-
             node = next_node
 
         return head
